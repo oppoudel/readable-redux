@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { filterDeletedPosts } from '../reducers/posts'
 import { fetchAllPosts, fetchComments, removePost } from '../actions'
 import Post from './Post'
 
@@ -12,8 +13,12 @@ class PostDetail extends Component {
     const { id, posts, comments } = this.props
     const post = posts.find(post => post.id === id)
     return (
-      <ul className="box">
-        <Post {...post} removePost={this.props.removePost} />
+      <div>
+        <ul>
+          <div className="box">
+            <Post {...post} removePost={this.props.removePost} />
+          </div>
+        </ul>
         <hr />
         <pre>
           <p>
@@ -27,14 +32,14 @@ class PostDetail extends Component {
           <hr />
           <p>Add a Comment</p>
         </pre>
-      </ul>
+      </div>
     )
   }
 }
 
 export default connect(
   (state, ownProps) => ({
-    posts: state.posts.posts,
+    posts: filterDeletedPosts(state.posts.posts),
     comments: state.comments.comments
   }),
   {

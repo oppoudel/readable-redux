@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import posts from './posts'
+import posts, { filterDeletedPosts } from './posts'
 import categories from './categories'
 import comments from './comments'
 
@@ -15,6 +15,10 @@ export const getPostsByCategory = (posts, category) => {
   } else {
     return posts
   }
+}
+
+export const filterComments = (posts, comments) => {
+  return comments.filter(comment => !comment.deleted)
 }
 
 export default rootReducer

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAllPosts, fetchCategories, removePost } from '../actions'
 import { getPostsByCategory } from '../reducers'
+import { filterDeletedPosts } from '../reducers/posts'
 import Post from './Post'
 
 class PostList extends Component {
@@ -32,7 +33,7 @@ class PostList extends Component {
 
 export default connect(
   (state, ownProps) => ({
-    posts: getPostsByCategory(state.posts.posts, ownProps.category),
+    posts: getPostsByCategory(filterDeletedPosts(state.posts.posts), ownProps.category),
     categories: state.categories.categories
   }),
   {

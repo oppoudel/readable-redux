@@ -4,6 +4,8 @@ const initState = {
   posts: []
 }
 
+export const filterDeletedPosts = posts => posts.filter(post => !post.deleted)
+
 export default (state = initState, action) => {
   switch (action.type) {
     case POST_ADD:
