@@ -1,0 +1,5 @@
+export const POST_ADD = 'POST_ADD'
+export const POSTS_LOAD = 'POSTS_LOAD'
+export const CATEGORIES_LOAD = 'CATEGORIES_LOAD'
+export const COMMENTS_LOAD = 'COMMENTS_LOAD'
+export const POST_DELETE = 'POST_DELETE'
