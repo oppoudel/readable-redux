@@ -16,7 +16,7 @@ class App extends Component {
         </div>
         <Router>
           <div className="Readable-App">
-            <Category />
+            <Route component ={Category}/>
             <Switch>
               <Route
                 exact

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const Category = props =>
   <ul className="Category-List">
-    <NavLink to="/">All</NavLink>
+    <NavLink exact to="/">All</NavLink>
     {props.categories.map((category, i) =>
       <NavLink to={`/${category.name}`} key={i}>
         {category.name}
