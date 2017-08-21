@@ -1,11 +1,8 @@
 import React from 'react'
 
 const Post = ({ id, title, body, deleted, category, removePost }) => {
-  const handleClick = id => {
-    removePost(id)
-  }
   return (
-    <li>
+    <li className="post">
       <p>
         <strong>
           {title} - {id}
@@ -14,10 +11,6 @@ const Post = ({ id, title, body, deleted, category, removePost }) => {
       <p>
         {body} - {category}
       </p>
-      <br />
-      <button className="button is-danger" onClick={() => handleClick(id)}>
-        Delete
-      </button>
     </li>
   )
 }

@@ -5,6 +5,7 @@ import './App.css'
 import PostList from './components/PostList'
 import Category from './components/Category'
 import PostDetail from './components/PostDetail'
+import PostForm from './components/PostForm'
 
 class App extends Component {
   render() {
@@ -16,8 +17,9 @@ class App extends Component {
         </div>
         <Router>
           <div className="Readable-App">
-            <Route component ={Category}/>
+            <Route component={Category} />
             <Switch>
+              <Route path="/newPost" component={PostForm} />
               <Route
                 exact
                 path="/:filter?"
@@ -25,7 +27,8 @@ class App extends Component {
               />
               <Route
                 path="/posts/:id"
-                render={({ match }) => <PostDetail id={match.params.id} />}
+                render={({ match, history }) =>
+                  <PostDetail id={match.params.id} history={history} />}
               />
             </Switch>
           </div>

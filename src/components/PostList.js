@@ -26,6 +26,9 @@ class PostList extends Component {
             )}
           </ul>
         </div>
+        <Link to="/newPost">
+          <button className="button is-primary">Add Post</button>
+        </Link>
       </div>
     )
   }

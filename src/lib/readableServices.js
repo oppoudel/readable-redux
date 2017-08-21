@@ -1,3 +1,4 @@
+import { v4 } from 'node-uuid'
 const api = 'http://localhost:5001'
 
 let token = localStorage.token
@@ -21,3 +22,19 @@ export const getCommentsById = id =>
 
 export const destroyPost = id =>
   fetch(`${api}/posts/${id}`, { method: 'DELETE', headers }).catch(err => console.log(err))
+export const createPost = post =>
+  fetch(`${api}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: v4(),
+      timestamp: Date.now(),
+      title: post.title,
+      body: post.body,
+      author: post.author,
+      category: post.category
+    })
+  }).then(res => res.json())

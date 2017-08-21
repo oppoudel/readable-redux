@@ -9,16 +9,25 @@ class PostDetail extends Component {
     this.props.fetchComments(this.props.id)
     if (this.props.posts.length === 0) this.props.fetchAllPosts()
   }
+  handleClick(id) {
+    this.props.removePost(id)
+    this.props.history.push('/')
+  }
   render() {
     const { id, posts, comments } = this.props
     const post = posts.find(post => post.id === id)
     return (
       <div>
-        <ul>
-          <div className="box">
-            <Post {...post} removePost={this.props.removePost} />
-          </div>
-        </ul>
+        <div className="Post-List">
+          <ul>
+            <div className="box">
+              <Post {...post} removePost={this.props.removePost} />
+            </div>
+          </ul>
+        </div>
+        <button className="button is-danger" onClick={() => this.handleClick(id)}>
+          Delete
+        </button>
         <hr />
         <pre>
           <p>

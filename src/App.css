@@ -27,7 +27,7 @@
   }
 }
 .Post-List {
-  margin-top: 2em;
+  margin: 2em;
 }
 
 .Category-List {
@@ -46,7 +46,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
-.Category-List .active{
+.Category-List .active {
   color: #333;
   text-decoration: underline;
 }
