@@ -6,6 +6,7 @@ import PostList from './components/PostList'
 import Category from './components/Category'
 import PostDetail from './components/PostDetail'
 import PostForm from './components/PostForm'
+import PostEdit from './components/PostEdit'
 
 class App extends Component {
   render() {
@@ -29,6 +30,10 @@ class App extends Component {
                 path="/posts/:id"
                 render={({ match, history }) =>
                   <PostDetail id={match.params.id} history={history} />}
+              />
+              <Route
+                path="/post/:id"
+                render={({ match, history }) => <PostEdit id={match.params.id} history={history} />}
               />
             </Switch>
           </div>

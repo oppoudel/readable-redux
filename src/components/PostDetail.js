@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { filterDeletedPosts } from '../reducers/posts'
-import { fetchAllPosts, fetchComments, removePost } from '../actions'
+import { fetchAllPosts, fetchComments, removePost, upVote, downVote } from '../actions'
 import Post from './Post'
+import Comments from './Comments'
 
 class PostDetail extends Component {
   componentDidMount() {
     this.props.fetchComments(this.props.id)
     if (this.props.posts.length === 0) this.props.fetchAllPosts()
   }
-  handleClick(id) {
+  handleDelete(id) {
     this.props.removePost(id)
     this.props.history.push('/')
+  }
+  handleEdit(id) {
+    this.props.history.push(`/post/${id}`)
   }
   render() {
     const { id, posts, comments } = this.props
@@ -21,26 +25,29 @@ class PostDetail extends Component {
         <div className="Post-List">
           <ul>
             <div className="box">
-              <Post {...post} removePost={this.props.removePost} />
+              <Post
+                {...post}
+                removePost={this.props.removePost}
+                comments={comments}
+                upVote={this.props.upVote}
+                downVote={this.props.downVote}
+              />
+              <button
+                className="button is-danger is-outlined"
+                onClick={() => this.handleDelete(id)}
+              >
+                Delete Post
+              </button>
+              <button className="button is-info is-outlined" onClick={() => this.handleEdit(id)}>
+                Edit Post
+              </button>
             </div>
           </ul>
         </div>
-        <button className="button is-danger" onClick={() => this.handleClick(id)}>
-          Delete
-        </button>
-        <hr />
-        <pre>
-          <p>
-            <strong>Comments</strong>
-          </p>
-          {comments.map(comment =>
-            <p key={comment.id}>
-              {comment.body} - {comment.author}
-            </p>
-          )}
-          <hr />
-          <p>Add a Comment</p>
-        </pre>
+        <p>
+          <button className="button is-primary">Add Comment</button>
+        </p>
+        <Comments comments={comments} />
       </div>
     )
   }
@@ -54,6 +61,8 @@ export default connect(
   {
     fetchComments,
     fetchAllPosts,
-    removePost
+    removePost,
+    upVote,
+    downVote
   }
 )(PostDetail)

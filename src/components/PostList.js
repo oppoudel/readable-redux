@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchAllPosts, fetchCategories, removePost } from '../actions'
+import { fetchAllPosts, fetchCategories, removePost, upVote, downVote } from '../actions'
 import { getPostsByCategory } from '../reducers'
 import { filterDeletedPosts } from '../reducers/posts'
 import Post from './Post'
@@ -18,7 +18,7 @@ class PostList extends Component {
           <ul>
             {this.props.posts.map(post =>
               <div key={post.id} className="box">
-                <Post {...post} removePost={this.props.removePost} />{' '}
+                <Post {...post} upVote={this.props.upVote} downVote={this.props.downVote} />
                 <Link to={`/posts/${post.id}`}>
                   <button className="button is-link">Details</button>
                 </Link>
@@ -42,6 +42,8 @@ export default connect(
   {
     fetchAllPosts,
     fetchCategories,
-    removePost
+    removePost,
+    upVote,
+    downVote
   }
 )(PostList)

@@ -38,3 +38,43 @@ export const createPost = post =>
       category: post.category
     })
   }).then(res => res.json())
+export const updatePost = post =>
+  fetch(`${api}/posts/${post.id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: post.id,
+      timestamp: Date.now(),
+      title: post.title,
+      body: post.body,
+      author: post.author,
+      category: post.category,
+      voteScore: post.voteScore,
+      deleted: false
+    })
+  }).then(res => res.json())
+export const addPostLike = id =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'upVote'
+    })
+  }).then(res => res.json())
+export const substractPostLike = id =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'downVote'
+    })
+  }).catch(err => console.log(err))
