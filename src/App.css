@@ -58,3 +58,21 @@
   box-shadow: none;
   border-bottom: 1px solid grey;
 }
+
+.Comments-Title {
+  margin: 10px;
+}
+.Comments-Row {
+  align-items: center;
+  border-bottom: 1px solid grey;
+}
+.Comments-Row .button {
+  padding: 0 10px;
+}
+.Comments-Row input {
+  border: none;
+  box-shadow: none;
+}
+.Comments-Row input:focus {
+  border-bottom: 1px solid #00d1b2;
+}

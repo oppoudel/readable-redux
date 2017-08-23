@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { filterDeletedPosts } from '../reducers/posts'
-import { fetchAllPosts, fetchComments, removePost, upVote, downVote, saveComment } from '../actions'
+import {
+  fetchAllPosts,
+  fetchComments,
+  removePost,
+  upVote,
+  downVote,
+  saveComment,
+  editComment
+} from '../actions'
 import Post from './Post'
 import Comments from './Comments'
 import CommentForm from './CommentForm'
@@ -19,7 +27,7 @@ class PostDetail extends Component {
     this.props.history.push(`/post/${id}`)
   }
   render() {
-    const { id, posts, comments, saveComment } = this.props
+    const { id, posts, comments, saveComment, editComment } = this.props
     const post = posts.find(post => post.id === id)
     return (
       <div>
@@ -46,7 +54,7 @@ class PostDetail extends Component {
           </ul>
         </div>
         <CommentForm parentId={id} saveComment={saveComment} />
-        <Comments comments={comments} />
+        <Comments comments={comments} editComment={editComment} />
       </div>
     )
   }
@@ -63,6 +71,7 @@ export default connect(
     removePost,
     upVote,
     downVote,
-    saveComment
+    saveComment,
+    editComment
   }
 )(PostDetail)

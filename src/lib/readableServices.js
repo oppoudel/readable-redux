@@ -93,3 +93,16 @@ export const createComment = comment =>
       parentId: comment.parentId
     })
   }).then(res => res.json())
+export const updateComment = comment =>
+  fetch(`${api}/comments/${comment.id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: comment.id,
+      timestamp: Date.now(),
+      body: comment.body
+    })
+  }).then(res => res.json())

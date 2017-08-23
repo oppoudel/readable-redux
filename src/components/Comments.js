@@ -2,47 +2,58 @@ import React from 'react'
 import FaThumbsup from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsdown from 'react-icons/lib/fa/thumbs-down'
 
-const Comments = props => {
-  return (
-    <div className="container">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.comments.map(comment =>
-            <tr key={comment.id}>
-              <td>
-                <strong>
-                  {comment.author}
-                </strong>
-              </td>
-              <td>
-                {comment.body}
-              </td>
-              <td>
-                <button className="button">
+class Comments extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit(e, comment) {
+    e.preventDefault()
+    const updatedComment = { ...comment, body: this[comment.id].value }
+    this.props.editComment(updatedComment)
+    this[comment.id].blur()
+  }
+  render() {
+    return (
+      <div className="container">
+        <div>
+          <div className="Comments-Title">
+            <strong>Comments</strong>
+          </div>
+          <div>
+            {this.props.comments.map(comment =>
+              <div key={comment.id} className="columns Comments-Row">
+                <div className="column is-1">
+                  <strong>
+                    {comment.author}
+                  </strong>
+                </div>
+                <form className="column" onSubmit={e => this.handleSubmit(e, comment)}>
+                  <input
+                    type="text"
+                    defaultValue={comment.body}
+                    className="input"
+                    ref={input => (this[comment.id] = input)}
+                  />
+                  <button style={{ display: 'none' }}>submit</button>
+                </form>
+                <button className="button column is-narrow">
                   <FaThumbsup />
                 </button>
-              </td>
-              <td>
-                <button className="button">
+                <button className="button column is-narrow">
                   {comment.voteScore}
                 </button>
-              </td>
-              <td>
-                <button className="button">
+                <button className="button column is-narrow">
                   <FaThumbsdown />
                 </button>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  )
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default Comments
