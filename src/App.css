@@ -53,3 +53,8 @@
 .box button {
   margin: 5px;
 }
+.Comment-Form input {
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid grey;
+}

@@ -6,7 +6,8 @@ import {
   POST_ADD,
   POST_UPDATE,
   ADD_POST_VOTE,
-  MINUS_POST_VOTE
+  MINUS_POST_VOTE,
+  COMMENT_ADD
 } from './constants'
 import {
   getAllPosts,
@@ -16,7 +17,8 @@ import {
   createPost,
   updatePost,
   addPostLike,
-  substractPostLike
+  substractPostLike,
+  createComment
 } from '../lib/readableServices'
 
 export const loadPosts = posts => ({ type: POSTS_LOAD, payload: posts })
@@ -27,6 +29,7 @@ export const addPost = post => ({ type: POST_ADD, payload: post })
 export const replacePost = post => ({ type: POST_UPDATE, payload: post })
 export const addPostVote = id => ({ type: ADD_POST_VOTE, payload: id })
 export const minusPostVote = id => ({ type: MINUS_POST_VOTE, payload: id })
+export const addComment = comment => ({ type: COMMENT_ADD, payload: comment })
 
 export const fetchAllPosts = () => {
   return dispatch => {
@@ -66,5 +69,10 @@ export const upVote = id => {
 export const downVote = id => {
   return dispatch => {
     substractPostLike(id).then(() => dispatch(minusPostVote(id)))
+  }
+}
+export const saveComment = comment => {
+  return dispatch => {
+    createComment(comment).then(res => dispatch(addComment(res)))
   }
 }

@@ -78,3 +78,18 @@ export const substractPostLike = id =>
       option: 'downVote'
     })
   }).catch(err => console.log(err))
+export const createComment = comment =>
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: v4(),
+      timestamp: Date.now(),
+      body: comment.body,
+      author: comment.author,
+      parentId: comment.parentId
+    })
+  }).then(res => res.json())
