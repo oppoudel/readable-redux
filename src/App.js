@@ -27,13 +27,14 @@ class App extends Component {
                 render={({ match }) => <PostList category={match.params.filter} />}
               />
               <Route
-                path="/posts/:id"
-                render={({ match, history }) =>
-                  <PostDetail id={match.params.id} history={history} />}
-              />
-              <Route
+                exact
                 path="/post/:id"
                 render={({ match, history }) => <PostEdit id={match.params.id} history={history} />}
+              />
+              <Route
+                path="/:category/:id"
+                render={({ match, history }) =>
+                  <PostDetail id={match.params.id} history={history} category={match.params.id} />}
               />
             </Switch>
           </div>

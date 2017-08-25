@@ -1,4 +1,5 @@
 import { COMMENTS_LOAD, COMMENT_ADD, COMMENT_UPDATE } from '../actions/constants'
+import uniqBy from 'lodash/uniqBy'
 
 const initState = {
   comments: []
@@ -7,7 +8,9 @@ const initState = {
 export default function comments(state = initState, action) {
   switch (action.type) {
     case COMMENTS_LOAD:
-      return { ...state, comments: action.payload }
+      const allComments = state.comments.concat(action.payload)
+      const flattenedComments = uniqBy(allComments, 'id')
+      return { ...state, comments: flattenedComments }
     case COMMENT_ADD:
       return { ...state, comments: state.comments.concat(action.payload) }
     case COMMENT_UPDATE:

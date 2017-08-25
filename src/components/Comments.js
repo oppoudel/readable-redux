@@ -15,6 +15,7 @@ class Comments extends React.Component {
     this[comment.id].blur()
   }
   render() {
+    const { comments, parentId } = this.props
     return (
       <div className="container">
         <div>
@@ -22,7 +23,7 @@ class Comments extends React.Component {
             <strong>Comments</strong>
           </div>
           <div>
-            {this.props.comments.map(comment =>
+            {comments.filter(comment => comment.parentId === parentId).map(comment =>
               <div key={comment.id} className="columns Comments-Row">
                 <div className="column is-1">
                   <strong>

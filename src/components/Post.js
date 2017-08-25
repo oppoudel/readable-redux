@@ -1,19 +1,9 @@
 import React from 'react'
 import FaThumbsup from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsdown from 'react-icons/lib/fa/thumbs-down'
+import CommentButton from './CommentButton'
 
-const Post = ({
-  id,
-  title,
-  body,
-  deleted,
-  category,
-  upVote,
-  author,
-  comments,
-  voteScore,
-  downVote
-}) => {
+const Post = ({ id, title, body, upVote, author, voteScore, downVote }) => {
   return (
     <li className="post">
       <p>
@@ -34,6 +24,7 @@ const Post = ({
         <button className="button" onClick={() => downVote(id)}>
           <FaThumbsdown />
         </button>
+        <CommentButton id={id} />
       </div>
     </li>
   )

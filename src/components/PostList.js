@@ -19,7 +19,7 @@ class PostList extends Component {
             {this.props.posts.map(post =>
               <div key={post.id} className="box">
                 <Post {...post} upVote={this.props.upVote} downVote={this.props.downVote} />
-                <Link to={`/posts/${post.id}`}>
+                <Link to={`/${post.category}/${post.id}`}>
                   <button className="button is-link">Details</button>
                 </Link>
               </div>

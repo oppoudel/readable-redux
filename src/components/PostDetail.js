@@ -54,14 +54,14 @@ class PostDetail extends Component {
           </ul>
         </div>
         <CommentForm parentId={id} saveComment={saveComment} />
-        <Comments comments={comments} editComment={editComment} />
+        <Comments comments={comments} editComment={editComment} parentId={id} />
       </div>
     )
   }
 }
 
 export default connect(
-  (state, ownProps) => ({
+  state => ({
     posts: filterDeletedPosts(state.posts.posts),
     comments: state.comments.comments
   }),

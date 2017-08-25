@@ -16,9 +16,12 @@ export const getPostsByCategory = (posts, category) => {
     return posts
   }
 }
-
 export const filterComments = (posts, comments) => {
   return comments.filter(comment => !comment.deleted)
 }
 
 export default rootReducer
+
+export function getCommentsByParentid(comments, id) {
+  return comments.filter(comment => comment.parentId === id)
+}
