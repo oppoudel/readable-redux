@@ -7,6 +7,7 @@ const addPost = post => ({ type: constants.POST_ADD, payload: post })
 const replacePost = post => ({ type: constants.POST_UPDATE, payload: post })
 const addPostVote = id => ({ type: constants.ADD_POST_VOTE, payload: id })
 const minusPostVote = id => ({ type: constants.MINUS_POST_VOTE, payload: id })
+export const sortPosts = option => ({ type: constants.SORT_POSTS, payload: option })
 
 export const fetchAllPosts = () => {
   return dispatch => {

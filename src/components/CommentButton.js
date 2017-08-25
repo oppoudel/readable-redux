@@ -11,8 +11,12 @@ class CommentButton extends Component {
     return (
       <div>
         <button className="button" title="No of Comments">
-          <FaComments />
-          {this.props.comments.filter(comment => comment.parentId === this.props.id).length}
+          <span className="icon is-small">
+            <FaComments />
+          </span>
+          <span>
+            {this.props.comments.filter(comment => comment.parentId === this.props.id).length}
+          </span>
         </button>
       </div>
     )

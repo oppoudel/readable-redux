@@ -33,6 +33,11 @@ export default (state = initState, action) => {
         ...state,
         posts: state.posts.map(post => (post.id === action.payload ? updatedPost : post))
       }
+    case constants.SORT_POSTS:
+      return {
+        ...state,
+        posts: state.posts.slice().sort((a, b) => a.voteScore - b.voteScore)
+      }
     default:
       return state
   }
