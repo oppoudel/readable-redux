@@ -15,7 +15,7 @@ class Comments extends React.Component {
     this[comment.id].blur()
   }
   render() {
-    const { comments, parentId } = this.props
+    const { comments, parentId, upVote, downVote } = this.props
     return (
       <div className="container">
         <div>
@@ -39,13 +39,21 @@ class Comments extends React.Component {
                   />
                   <button style={{ display: 'none' }}>submit</button>
                 </form>
-                <button className="button column is-narrow">
+                <button
+                  className="button column is-narrow"
+                  onClick={() => upVote(comment.id)}
+                  title="Up Vote"
+                >
                   <FaThumbsup />
                 </button>
                 <button className="button column is-narrow">
                   {comment.voteScore}
                 </button>
-                <button className="button column is-narrow">
+                <button
+                  className="button column is-narrow"
+                  onClick={() => downVote(comment.id)}
+                  title="Down Vote"
+                >
                   <FaThumbsdown />
                 </button>
               </div>

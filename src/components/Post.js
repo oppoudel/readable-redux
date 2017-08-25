@@ -1,9 +1,10 @@
 import React from 'react'
+import moment from 'moment'
 import FaThumbsup from 'react-icons/lib/fa/thumbs-up'
 import FaThumbsdown from 'react-icons/lib/fa/thumbs-down'
 import CommentButton from './CommentButton'
 
-const Post = ({ id, title, body, upVote, author, voteScore, downVote }) => {
+const Post = ({ id, title, body, upVote, author, voteScore, downVote, timestamp }) => {
   return (
     <li className="post">
       <p>
@@ -13,6 +14,9 @@ const Post = ({ id, title, body, upVote, author, voteScore, downVote }) => {
       </p>
       <p>
         {body} - {author}
+      </p>
+      <p>
+        Posted on {moment(timestamp).format('DD MMM YYYY hh:mm a')}
       </p>
       <div>
         <button className="button" onClick={() => upVote(id)} title="Up Vote">

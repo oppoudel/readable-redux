@@ -106,3 +106,25 @@ export const updateComment = comment =>
       body: comment.body
     })
   }).then(res => res.json())
+export const addCommentLike = id =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'upVote'
+    })
+  }).then(res => res.json())
+export const substractCommentLike = id =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'downVote'
+    })
+  }).catch(err => console.log(err))

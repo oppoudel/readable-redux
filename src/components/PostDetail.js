@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { filterDeletedPosts } from '../reducers/posts'
 import { fetchAllPosts, removePost, upVote, downVote } from '../actions/posts.js'
-import { fetchComments, saveComment, editComment } from '../actions/comments.js'
+import {
+  fetchComments,
+  saveComment,
+  editComment,
+  upCommentVote,
+  downCommentVote
+} from '../actions/comments.js'
 import Post from './Post'
 import Comments from './Comments'
 import CommentForm from './CommentForm'
@@ -20,7 +26,15 @@ class PostDetail extends Component {
     this.props.history.push(`/post/${id}`)
   }
   render() {
-    const { id, posts, comments, saveComment, editComment } = this.props
+    const {
+      id,
+      posts,
+      comments,
+      saveComment,
+      editComment,
+      upCommentVote,
+      downCommentVote
+    } = this.props
     const post = posts.find(post => post.id === id)
     return post
       ? <div>
@@ -47,7 +61,13 @@ class PostDetail extends Component {
             </ul>
           </div>
           <CommentForm parentId={id} saveComment={saveComment} />
-          <Comments comments={comments} editComment={editComment} parentId={id} />
+          <Comments
+            comments={comments}
+            editComment={editComment}
+            parentId={id}
+            upVote={upCommentVote}
+            downVote={downCommentVote}
+          />
         </div>
       : <div>Sorry the Post You Are Looking For Does Not Exists - 404</div>
   }
@@ -65,6 +85,8 @@ export default connect(
     upVote,
     downVote,
     saveComment,
-    editComment
+    editComment,
+    upCommentVote,
+    downCommentVote
   }
 )(PostDetail)
