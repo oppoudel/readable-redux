@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { filterDeletedPosts } from '../reducers/posts'
-import {
-  fetchAllPosts,
-  fetchComments,
-  removePost,
-  upVote,
-  downVote,
-  saveComment,
-  editComment
-} from '../actions'
+import { fetchAllPosts, removePost, upVote, downVote } from '../actions/posts.js'
+import { fetchComments, saveComment, editComment } from '../actions/comments.js'
 import Post from './Post'
 import Comments from './Comments'
 import CommentForm from './CommentForm'
@@ -29,34 +22,34 @@ class PostDetail extends Component {
   render() {
     const { id, posts, comments, saveComment, editComment } = this.props
     const post = posts.find(post => post.id === id)
-    return (
-      <div>
-        <div className="Post-List">
-          <ul>
-            <div className="box">
-              <Post
-                {...post}
-                removePost={this.props.removePost}
-                comments={comments}
-                upVote={this.props.upVote}
-                downVote={this.props.downVote}
-              />
-              <button
-                className="button is-danger is-outlined"
-                onClick={() => this.handleDelete(id)}
-              >
-                Delete Post
-              </button>
-              <button className="button is-info is-outlined" onClick={() => this.handleEdit(id)}>
-                Edit Post
-              </button>
-            </div>
-          </ul>
+    return post
+      ? <div>
+          <div className="Post-List">
+            <ul>
+              <div className="box">
+                <Post
+                  {...post}
+                  removePost={this.props.removePost}
+                  comments={comments}
+                  upVote={this.props.upVote}
+                  downVote={this.props.downVote}
+                />
+                <button
+                  className="button is-danger is-outlined"
+                  onClick={() => this.handleDelete(id)}
+                >
+                  Delete Post
+                </button>
+                <button className="button is-info is-outlined" onClick={() => this.handleEdit(id)}>
+                  Edit Post
+                </button>
+              </div>
+            </ul>
+          </div>
+          <CommentForm parentId={id} saveComment={saveComment} />
+          <Comments comments={comments} editComment={editComment} parentId={id} />
         </div>
-        <CommentForm parentId={id} saveComment={saveComment} />
-        <Comments comments={comments} editComment={editComment} parentId={id} />
-      </div>
-    )
+      : <div>Sorry the Post You Are Looking For Does Not Exists - 404</div>
   }
 }
 

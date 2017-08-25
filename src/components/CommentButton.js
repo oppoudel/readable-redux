@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchComments } from '../actions'
+import { fetchComments } from '../actions/comments'
 import FaComments from 'react-icons/lib/fa/comments'
 
 class CommentButton extends Component {

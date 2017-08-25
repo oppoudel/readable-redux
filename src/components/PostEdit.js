@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategories, editPost, fetchAllPosts } from '../actions'
+import { editPost, fetchAllPosts } from '../actions/posts'
+import { fetchCategories } from '../actions/categories'
 
 class PostForm extends Component {
   constructor(props) {

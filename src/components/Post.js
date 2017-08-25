@@ -15,13 +15,13 @@ const Post = ({ id, title, body, upVote, author, voteScore, downVote }) => {
         {body} - {author}
       </p>
       <div>
-        <button className="button" onClick={() => upVote(id)}>
+        <button className="button" onClick={() => upVote(id)} title="Up Vote">
           <FaThumbsup />
         </button>
         <button className="button">
           {voteScore}
         </button>
-        <button className="button" onClick={() => downVote(id)}>
+        <button className="button" onClick={() => downVote(id)} title="Down Vote">
           <FaThumbsdown />
         </button>
         <CommentButton id={id} />
