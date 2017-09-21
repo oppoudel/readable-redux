@@ -1,5 +1,5 @@
-import React from 'react'
-import FaSortasc from 'react-icons/lib/fa/sort-asc'
+import React from 'react';
+import FaSortasc from 'react-icons/lib/fa/sort-asc';
 
 const SortButton = props => {
   return (
@@ -11,7 +11,7 @@ const SortButton = props => {
         <span>Sort By # of Votes</span>
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default SortButton
+export default SortButton;
